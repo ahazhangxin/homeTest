@@ -1,5 +1,8 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*
+=======
+>>>>>>> 8ed038a6f7a8bc15bd798193370afcf80856e428
 =======
 >>>>>>> 8ed038a6f7a8bc15bd798193370afcf80856e428
 #include "Sort.h"
@@ -7,6 +10,7 @@
 int main()
 {
 	Test();
+<<<<<<< HEAD
 <<<<<<< HEAD
 }
 */
@@ -54,6 +58,8 @@ int main()
 	A* p = NULL;
 	p->PrintA();
 	p->Show();
+=======
+>>>>>>> 8ed038a6f7a8bc15bd798193370afcf80856e428
 =======
 >>>>>>> 8ed038a6f7a8bc15bd798193370afcf80856e428
 }
