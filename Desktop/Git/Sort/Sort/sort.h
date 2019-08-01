@@ -26,7 +26,6 @@ void InsertSort(int array[], int size)
 	}
 }
 
-#if 0
 void __InsertSort(int array[], int size, int gap)
 {
 	for (int g = 0; g < gap; g++) {
@@ -47,7 +46,7 @@ void __InsertSort(int array[], int size, int gap)
 		}
 	}
 }
-#else
+#if 0
 void __InsertSort(int array[], int size, int gap)
 {
 	int key;
@@ -179,7 +178,7 @@ void CreateHeap(int array[], int size)
 // 空间复杂度	O(1)
 void HeapSort(int array[], int size)
 {
-	// 1. 建大堆（升序）
+	// 1. 建大堆（升序）	
 	CreateHeap(array, size);
 
 	for (int i = 0; i < size; i++) {
@@ -311,7 +310,8 @@ void Test()
 	// 7. 多个数
 	//int array[] = { 1, 1, 1, 1, 1, 1, 1,1, 1 };
 	int size = sizeof(array) / sizeof(int);
-	InsertSort(array, size);
+	//InsertSort(array, size);
 	//QuickSort(array, size);
+	HeapSort(array, size);
 	PrintArray(array, size);
 }

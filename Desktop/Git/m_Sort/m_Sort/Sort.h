@@ -70,7 +70,6 @@ void SelectSort(int array[], int size)
 //空间复杂度		O(1)
 void InsertSort(int array[], int size)
 {
-	int temp = array[0];
 	int j;
 	for (int i = 0; i < size; i++)
 	{
@@ -120,8 +119,6 @@ void Merge(int array[], int left, int mid, int right, int extra[])
 	for (int i = left; i < right; i++) {
 		array[i] = extra[i];
 	}
-
-
 }
 
 void _MergeSort(int array[],int left,int right,int extra[])
@@ -174,6 +171,13 @@ void MergeSortLoop(int array[], int size)
 	free(extra);
 }
 
+//快速排序
+//稳定性	不稳定
+//时间复杂度	O（nlogN）
+//空间复杂度	O（lgN）
+
+
+//Hoare版本
 int Partition_01(int *array, int left, int right)
 {
 	int begin = left;
@@ -199,6 +203,46 @@ int Partition_01(int *array, int left, int right)
 	return begin;
 }
 
+//挖坑法
+int Partition_02(int *array, int left, int right)
+{
+	int begin = left;
+	int end = right;
+	int temp = array[right];
+	while (begin < end)
+	{
+		while (begin < end && array[begin] <= temp)
+		{
+			begin++;
+		}
+		array[end] = array[begin];
+		while (begin < end && array[end] >= temp)
+		{
+			end--;
+		}
+		array[begin] = array[end];
+	}
+	array[begin] = temp;
+
+	return begin;
+}
+
+//前后指针法
+int Partition_03(int *array, int left, int right)
+{
+	int cur, div;
+
+	for (cur = left, div = left; cur < right; cur++)
+	{
+		if (array[cur] < array[right])
+		{
+			Swap(&array[cur],&array[div]);
+			div++;
+		}
+	}
+	Swap(&array[div], &array[right]);
+	return div;
+}
 
 
 void _QuickSort(int *array, int left, int right)
@@ -212,7 +256,7 @@ void _QuickSort(int *array, int left, int right)
 	{
 		return;
 	}
-	int div = Partition_01(array, left, right);
+	int div = Partition_03(array, left, right);
 	_QuickSort(array, left, div - 1);
 	_QuickSort(array, div + 1, right);
 }
@@ -220,6 +264,92 @@ void _QuickSort(int *array, int left, int right)
 void QuickSort(int array[], int size)
 {
 	_QuickSort(array, 0, size - 1);
+}
+
+
+void _insertSort(int* array,int size,int gap)
+{
+	for (int g = 0; g < gap; g++)
+	{
+		int key;
+		int i, j;
+		for (i = gap + g; i < size; i += gap)
+		{
+			key = array[i];
+			for (j = i - gap; j >= 0; j -= gap)
+			{
+				if (key >= array[j])
+				{
+					break;
+				}
+				else
+				{
+					Swap(&array[j], &array[j + gap]);
+				}
+			}
+			array[j + gap] = key;
+		}
+	}
+}
+
+//希尔排序
+//稳定性	不稳定
+//时间复杂度	O(n*logN2)
+//空间复杂度	O(1)
+void ShellSort(int array[], int size)
+{
+	int gap = size;
+	while (true)
+	{
+		gap = gap / 3 + 1;
+		_insertSort(array,size,gap);
+		if (gap == 1)
+			break;
+	}
+}
+
+void AdjustDown(int* array,int size,int root)
+{
+	int left = 2 * root + 1;
+	int right = 2 * root + 2;
+	if (left >= size)
+	{
+		return;
+	}
+	int max = left;
+	if (right < size && array[right] > array[left])
+	{
+		max = right;
+	}
+	if (array[root] >= array[max])
+	{
+		return;
+	}
+	Swap(&array[max], &array[root]);
+	AdjustDown(array, size, max);
+}
+
+void CreateHeap(int* array, int size)
+{
+	for (int i = size / 2 - 1; i >= 0; i--)
+	{
+		AdjustDown(array, size, i);
+	}
+}
+
+//堆排序
+//稳定性	不稳定
+//时间复杂度	O(nlogN)
+//空间复杂度	O(1)
+void HeapSort(int array[], int size)
+{
+	CreateHeap(array, size);
+
+	for (int i = 0; i < size; ++i)
+	{
+		Swap(&array[0], &array[size - 1 - i]);
+		AdjustDown(array, size - i - 1, 0);
+	}
 }
 
 
@@ -243,6 +373,8 @@ void Test()
 	//InsertSort(array, size);
 	//MergeSort(array, size);
 	//MergeSortLoop(array, size);
-	QuickSort(array, size);
+	//QuickSort(array, size);
+	//ShellSort(array, size);
+	HeapSort(array, size);
 	Printf(array, size);
 }
