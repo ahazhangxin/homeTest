@@ -92,7 +92,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="CloudClient.hpp" />
+<<<<<<< HEAD
     <ClInclude Include="httplib.h" />
+=======
+>>>>>>> 26577221168df6daa9d1c137d1204b1cb59e4d62
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

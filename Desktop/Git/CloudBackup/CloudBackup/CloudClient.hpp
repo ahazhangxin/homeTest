@@ -4,6 +4,7 @@
 #include<iostream>
 #include<fstream>
 #include<sstream>
+<<<<<<< HEAD
 #include<vector>
 #include<string>
 #include"httplib.h"
@@ -13,11 +14,18 @@
 #include<thread>
 
 int count = 0;
+=======
+#include<string>
+#include<unordered_map>
+#include<boost/filesystem.hpp>
+#include<boost/algorithm/string.hpp>
+>>>>>>> 26577221168df6daa9d1c137d1204b1cb59e4d62
 
 #define CLIENT_BACKUP_DIR "backup"
 #define CLIENT_BACKUP_INFO_FILE "back.list"
 #define RANGE_MAX_SIZE (10 << 20)
 //10M
+<<<<<<< HEAD
 #define SERVER_IP "94.191.109.116"
 #define SERVER_PORT 9000
 #define BACKUP_URI "/list/"
@@ -97,6 +105,13 @@ public:
 	}
 private:
 
+=======
+
+namespace bf = boost::filesystem;
+class CloudClient
+{
+public:
+>>>>>>> 26577221168df6daa9d1c137d1204b1cb59e4d62
 	//获取备份信息
 	bool GetBackupInfo(){
 		//filename1 etag\n
@@ -129,7 +144,11 @@ private:
 		}
 		file.close();
 		std::vector<std::string> list;
+<<<<<<< HEAD
 		boost::split(list, body, boost::is_any_of("\n"));
+=======
+		boost::split(list, body, "\n");
+>>>>>>> 26577221168df6daa9d1c137d1204b1cb59e4d62
 		
 		for (auto i : list){
 			//filename1 etag\n
@@ -146,7 +165,11 @@ private:
 	}
 	
 	//备份
+<<<<<<< HEAD
 	bool SetBackupInfo()
+=======
+	bool SetBackuoInfo()
+>>>>>>> 26577221168df6daa9d1c137d1204b1cb59e4d62
 	{
 		std::string body;
 		for (auto i : _backup_list)
@@ -170,8 +193,12 @@ private:
 	//目录监听
 	bool BackupDirListen(const std::string &path)
 	{
+<<<<<<< HEAD
 		bf::path file(path);
 		bf::directory_iterator item_begin(file);
+=======
+		bf::directory_iterator item_begin(CLIENT_BACKUP_DIR);
+>>>>>>> 26577221168df6daa9d1c137d1204b1cb59e4d62
 		bf::directory_iterator item_end;
 		for (; item_begin != item_end; ++item_begin){
 			//递归实现走完目录
@@ -180,6 +207,7 @@ private:
 				continue;
 			}
 			//不用备份的普通文件
+<<<<<<< HEAD
 			if ((FileIsNeedBackup(item_begin->path().string())) == false){
 				continue;
 			}
@@ -193,6 +221,17 @@ private:
 			
 		}
 		return true;
+=======
+			if (FileIsNeedBackup(item_begin->path().string()) == false){
+				continue;
+			}
+			//需要备份的普通文件
+			if (PutFileData(item_begin->path().string()) == false){
+				continue;
+			}
+			AddBackInfo(item_begin->path().string());
+		}
+>>>>>>> 26577221168df6daa9d1c137d1204b1cb59e4d62
 	}
 	
 	//添加一个信息
@@ -204,9 +243,14 @@ private:
 		{
 			return false;
 		}
+<<<<<<< HEAD
 		_backup_list[file] = etag;		
 		std::cout << "the info log success" << std::endl;
 		return true;
+=======
+
+		_backup_list[file] = etag;
+>>>>>>> 26577221168df6daa9d1c137d1204b1cb59e4d62
 	}
 	
 
@@ -222,7 +266,11 @@ private:
 		int64_t fsize = bf::file_size(path);
 		int64_t mtime = bf::last_write_time(path);
 		std::stringstream tmp;
+<<<<<<< HEAD
 		tmp << std::hex << mtime << "-" << std::hex << fsize;
+=======
+		tmp << std::hex << fsize << "-" << std::hex << mtime;
+>>>>>>> 26577221168df6daa9d1c137d1204b1cb59e4d62
 		etag = tmp.str();
 		return true;
 	}
@@ -246,6 +294,7 @@ private:
 		return true;
 	}
 
+<<<<<<< HEAD
 	//线程入口函数
 	static void thr_start(ThrBackUp *backup_info)
 	{
@@ -254,12 +303,15 @@ private:
 	}
 
 
+=======
+>>>>>>> 26577221168df6daa9d1c137d1204b1cb59e4d62
 	//上传模块
 	bool PutFileData(const std::string &file)
 	{
 		//按分块大小（10M）对文件进行分块传输
 		//并且通过获取分块传输是否成功判断整个文件是否上传成功
 		//选择多线程处理
+<<<<<<< HEAD
 		//1.获取文件大小
 		int64_t fsize = bf::file_size(file);
 		if (fsize <= 0)
@@ -308,6 +360,8 @@ private:
 			return false;
 		}
 		std::cerr << "file:[" << file << "] backup success\n";
+=======
+>>>>>>> 26577221168df6daa9d1c137d1204b1cb59e4d62
 		return true;
 	}
 
@@ -319,11 +373,16 @@ public:
 		while (1)
 		{
 			BackupDirListen(CLIENT_BACKUP_DIR);
+<<<<<<< HEAD
 			SetBackupInfo();
 			Sleep(3000);
 
 		}
 		return true;
+=======
+			SetBackuoInfo();
+		}
+>>>>>>> 26577221168df6daa9d1c137d1204b1cb59e4d62
 	}
 private:
 	std::unordered_map<std::string, std::string> _backup_list;

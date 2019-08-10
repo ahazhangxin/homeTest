@@ -23,8 +23,11 @@
     <ClInclude Include="CloudClient.hpp">
       <Filter>头文件</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="httplib.h">
       <Filter>头文件</Filter>
     </ClInclude>
+=======
+>>>>>>> 26577221168df6daa9d1c137d1204b1cb59e4d62
   </ItemGroup>
 </Project>
