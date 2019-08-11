@@ -11,22 +11,22 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{219447EA-8024-4CC9-9BC9-47DFDEF7EDA2}</ProjectGuid>
-    <RootNamespace>STLString类</RootNamespace>
+    <ProjectGuid>{B8CDB08F-654E-4909-AD19-4A85DC8ED3FE}</ProjectGuid>
+    <RootNamespace>Vector</RootNamespace>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v120</PlatformToolset>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v120</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
-    <CharacterSet>Unicode</CharacterSet>
+    <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -44,7 +44,6 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -65,16 +64,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-<<<<<<< HEAD:Desktop/Git/STL-String类/STL-String类/STL-String类.vcxproj
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="test.cpp" />
-=======
-    <ClInclude Include="CloudClient.hpp" />
-<<<<<<< HEAD
-    <ClInclude Include="httplib.h" />
-=======
->>>>>>> 26577221168df6daa9d1c137d1204b1cb59e4d62
->>>>>>> 7218ee065a7ec2b44e28317e556902b6d2677ebf:Desktop/Git/CloudBackup/CloudBackup/CloudBackup.vcxproj
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
