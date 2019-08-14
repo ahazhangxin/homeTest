@@ -194,8 +194,6 @@ int Partition_01(int *array, int left, int right)
 		{
 			end--;
 		}
-
-
 		Swap(&array[begin], &array[end]);
 	}
 
@@ -337,13 +335,10 @@ void CreateHeap(int* array, int size)
 	}
 }
 
-<<<<<<< HEAD
 //堆排序
 //稳定性	不稳定
 //时间复杂度	O(nlogN)
 //空间复杂度	O(1)
-=======
->>>>>>> 26577221168df6daa9d1c137d1204b1cb59e4d62
 void HeapSort(int array[], int size)
 {
 	CreateHeap(array, size);
